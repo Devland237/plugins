@@ -1,0 +1,308 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dynamic-form\n"
+"POT-Creation-Date: 2024-03-18 15:47+0100\n"
+"PO-Revision-Date: 2024-03-08 14:56+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_n;_e;esc_html__;esc_attr\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: dynamic-form.php:104 dynamic-form.php:209
+msgid "nom & prénoms"
+msgstr ""
+
+#: dynamic-form.php:108
+msgid "Email"
+msgstr ""
+
+#: dynamic-form.php:112 dynamic-form.php:213
+msgid "Âge"
+msgstr ""
+
+#: dynamic-form.php:116 dynamic-form.php:218 dynamic-form.php:801
+#: dynamic-form.php:835 dynamic-form.php:908 dynamic-form.php:938
+msgid "Niveau scolaire"
+msgstr ""
+
+#: dynamic-form.php:120 dynamic-form.php:222
+msgid "Avez-vous tous vos relevés de note ? :"
+msgstr ""
+
+#: dynamic-form.php:122 dynamic-form.php:140 dynamic-form.php:168
+#: dynamic-form.php:175 dynamic-form.php:224 dynamic-form.php:242
+msgid "Oui"
+msgstr ""
+
+#: dynamic-form.php:124 dynamic-form.php:142 dynamic-form.php:170
+#: dynamic-form.php:177 dynamic-form.php:226 dynamic-form.php:244
+msgid "Non"
+msgstr ""
+
+#: dynamic-form.php:130 dynamic-form.php:232
+msgid "nombre d'année d'expérience professionnelle"
+msgstr ""
+
+#: dynamic-form.php:134 dynamic-form.php:236 dynamic-form.php:804
+#: dynamic-form.php:838 dynamic-form.php:911 dynamic-form.php:941
+msgid "Domaine de travail"
+msgstr ""
+
+#: dynamic-form.php:138
+msgid "Avez-vous des enfants ? :"
+msgstr ""
+
+#: dynamic-form.php:143
+msgid "Si oui combien d'enfants et quel âge ? :"
+msgstr ""
+
+#: dynamic-form.php:166 dynamic-form.php:240
+msgid "Avez-vous un frère ou une sœur direct au Canada ? :"
+msgstr ""
+
+#: dynamic-form.php:173
+msgid "Êtes-vous marié ? :"
+msgstr ""
+
+#: dynamic-form.php:206
+msgid "Si oui alors remplissez les informations relatives à votre conjoint "
+msgstr ""
+
+#: dynamic-form.php:251
+msgid "Soumettre"
+msgstr ""
+
+#: dynamic-form.php:266 dynamic-form.php:357 dynamic-form.php:534
+msgid "Veuillez remplir ce champ"
+msgstr ""
+
+#: dynamic-form.php:437 dynamic-form.php:471
+msgid "Une erreur s'est produite lors de l'insertion des données de l'utilisateur : "
+msgstr ""
+
+#: dynamic-form.php:468
+msgid "Erreur lors de l'insertion des données de l'utilisateur."
+msgstr ""
+
+#: dynamic-form.php:507
+msgid "Ajuster les paramètres SMTP de l'hébergeur"
+msgstr ""
+
+#: dynamic-form.php:511
+msgid "Nom de l'hébergeur :"
+msgstr ""
+
+#: dynamic-form.php:515
+msgid "Nom de l'utilisateur :"
+msgstr ""
+
+#: dynamic-form.php:519
+msgid "Mot de passe :"
+msgstr ""
+
+#: dynamic-form.php:523
+msgid "Enregistrer les paramètres"
+msgstr ""
+
+#: dynamic-form.php:599
+msgid "Erreur lors de l'insertion des paramètres de configuration."
+msgstr ""
+
+#: dynamic-form.php:602
+msgid "Une erreur s'est produite lors de l'insertion des paramètres de configuration : "
+msgstr ""
+
+#: dynamic-form.php:651 dynamic-form.php:683 dynamic-form.php:731
+msgid "Formulaire d'immigration"
+msgstr ""
+
+#: dynamic-form.php:652
+msgid "Félicitation Mr./(Mrs). "
+msgstr ""
+
+#: dynamic-form.php:652
+msgid " pour avoir rempli notre formulaire !!!, vos informations sont :"
+msgstr ""
+
+#: dynamic-form.php:653
+msgid "Âge : "
+msgstr ""
+
+#: dynamic-form.php:653 dynamic-form.php:656 dynamic-form.php:667
+#: dynamic-form.php:670
+msgid "ans"
+msgstr ""
+
+#: dynamic-form.php:654
+msgid "Niveau scolaire : "
+msgstr ""
+
+#: dynamic-form.php:655
+msgid "Avez-vous vos relevés de notes ? : "
+msgstr ""
+
+#: dynamic-form.php:656
+msgid "Votre expérience professionnelle : "
+msgstr ""
+
+#: dynamic-form.php:657
+msgid "Votre domaine de travail : "
+msgstr ""
+
+#: dynamic-form.php:658
+msgid "Avez-vous des enfants ? : "
+msgstr ""
+
+#: dynamic-form.php:660
+msgid "Si oui, combien d'enfants et leurs tranches d'âge : "
+msgstr ""
+
+#: dynamic-form.php:662
+msgid "Avez-vous un frère ou une sœur au Canada ? : "
+msgstr ""
+
+#: dynamic-form.php:663
+msgid "Êtes-vous marié(e) ? : "
+msgstr ""
+
+#: dynamic-form.php:665
+msgid "---Informations relatives au conjoint---"
+msgstr ""
+
+#: dynamic-form.php:666
+msgid "Nom du conjoint : "
+msgstr ""
+
+#: dynamic-form.php:667
+msgid "Âge du conjoint: "
+msgstr ""
+
+#: dynamic-form.php:668
+msgid "Niveau scolaire du conjoint : "
+msgstr ""
+
+#: dynamic-form.php:669
+msgid "Notes du conjoint : "
+msgstr ""
+
+#: dynamic-form.php:670
+msgid "Expérience professionnelle du conjoint : "
+msgstr ""
+
+#: dynamic-form.php:671
+msgid "Domaine de travail du conjoint : "
+msgstr ""
+
+#: dynamic-form.php:672
+msgid "Famille au Canada : "
+msgstr ""
+
+#: dynamic-form.php:732
+msgid "Bonjour "
+msgstr ""
+
+#: dynamic-form.php:732
+msgid ", merci de nous faire confiance !!"
+msgstr ""
+
+#: dynamic-form.php:743
+msgid "Félicitation, votre formulaire a été soumis avec succès. Vous recevrez un mail recensant vos informations !"
+msgstr ""
+
+#: dynamic-form.php:764
+msgid "Formulaire_immigration.pdf"
+msgstr ""
+
+#: dynamic-form.php:792
+msgid "Liste des clients inscrits"
+msgstr ""
+
+#: dynamic-form.php:798 dynamic-form.php:832 dynamic-form.php:904
+#: dynamic-form.php:934
+msgid "ID"
+msgstr ""
+
+#: dynamic-form.php:799 dynamic-form.php:833 dynamic-form.php:905
+#: dynamic-form.php:935
+msgid "Nom"
+msgstr ""
+
+#: dynamic-form.php:800 dynamic-form.php:834 dynamic-form.php:907
+#: dynamic-form.php:937
+msgid "Age"
+msgstr ""
+
+#: dynamic-form.php:802 dynamic-form.php:836 dynamic-form.php:909
+#: dynamic-form.php:939
+msgid "Relevé de notes"
+msgstr ""
+
+#: dynamic-form.php:803 dynamic-form.php:837 dynamic-form.php:910
+#: dynamic-form.php:940
+msgid "Expérience professionnelle"
+msgstr ""
+
+#: dynamic-form.php:805 dynamic-form.php:839
+msgid "Enfants"
+msgstr ""
+
+#: dynamic-form.php:806 dynamic-form.php:840
+msgid "Nbre d'enfants et âge"
+msgstr ""
+
+#: dynamic-form.php:807 dynamic-form.php:841 dynamic-form.php:912
+#: dynamic-form.php:942
+msgid "Frères/Soeurs au canada"
+msgstr ""
+
+#: dynamic-form.php:808 dynamic-form.php:842
+msgid "Statut matrimoniale"
+msgstr ""
+
+#: dynamic-form.php:857 dynamic-form.php:957
+msgid "&laquo; Précédent"
+msgstr ""
+
+#: dynamic-form.php:858 dynamic-form.php:958
+msgid "Suivant &raquo;"
+msgstr ""
+
+#: dynamic-form.php:867
+msgid "No records found."
+msgstr ""
+
+#: dynamic-form.php:898
+msgid "Liste des conjoints inscrits"
+msgstr ""
+
+#: dynamic-form.php:906 dynamic-form.php:936
+msgid "Epoux(se) de"
+msgstr ""
+
+#: dynamic-form.php:967
+msgid "Aucun enregistrement trouvé."
+msgstr ""
+
+#: dynamic-form.php:980 dynamic-form.php:981
+msgid "Dynamic Form"
+msgstr ""
+
+#: dynamic-form.php:991 dynamic-form.php:992
+msgid "Liste des Clients"
+msgstr ""
+
+#: dynamic-form.php:999 dynamic-form.php:1000
+msgid "Liste des conjoints"
+msgstr ""
+
+#: dynamic-form.php:1008 dynamic-form.php:1009
+msgid "Paramètres"
+msgstr ""

@@ -1,0 +1,19 @@
+/* custom navigation */
+.dynamic-form-table .tablenav .tablenav-pages {
+    float: right;
+    margin: 0 0 9px;
+    border: 1px solid !important;
+    padding: 15px !important;
+}
+
+.dynamic-form-table .tablenav .tablenav-pages span{
+    border-right: 1px solid;
+    margin-right: 5px;
+}
+
+.dynamic-form-table .wrap h1.wp-heading-inline {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 30px;
+    margin-bottom: 2em;
+}
