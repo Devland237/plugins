@@ -100,7 +100,7 @@ function display_form()
 
     $form_success = isset($_GET['form_success']) && $_GET['form_success'] === 'true';
 
-    // Réinitialisez les données du formulaire si nécessaire
+    // Reset form data when it was submitted
     $user_data = $form_success ? [] : get_submit_form_data()['user_data'];
     $other_data = $form_success ? [] : get_submit_spouse_form_data()['other_data'];
     $errors = $form_success ? [] : get_submit_form_data()['errors'];
@@ -417,7 +417,7 @@ function get_submit_spouse_form_data()
 
     return ['other_data' => $other_data, 'errors' => $errors];
 }
-// Fonction pour insérer les données du conjoint
+// Function for inserting spouse's data
 function insert_spouse_data($other_data)
 {
     global $wpdb;
@@ -479,12 +479,12 @@ function insert_user_data($spouse_id, $user_data)
 }
 
 if (isset($_POST['submit-dynamic-form'])) {
-    // Récupérer les données de l'utilisateur
+    // Recover user data
     $user_form_data = get_submit_form_data();
     $user_data = $user_form_data['user_data'];
     $user_errors = $user_form_data['errors'];
 
-    // Récupérer les données du conjoint
+    // Recover data from spouse
     $spouse_form_data = get_submit_spouse_form_data();
     $spouse_data = $spouse_form_data['other_data'];
     $spouse_errors = $spouse_form_data['errors'];
@@ -499,9 +499,13 @@ if (isset($_POST['submit-dynamic-form'])) {
 }
 
 //display settings form
-
 function display_dynamic_form_settings()
 {
+    // Recover smtp configuration data
+    $host_name = isset($_POST['host_name']) ? sanitize_text_field($_POST['host_name']) : '';
+    $username = isset($_POST['username']) ? sanitize_text_field($_POST['username']) : '';
+    $host_password = isset($_POST['host_password']) ? sanitize_text_field($_POST['host_password']) : '';
+
     $form_setting_data = get_settings_fields();
     $settings_data = $form_setting_data['settings_data'];
     $errors = $form_setting_data['errors'];
@@ -512,22 +516,24 @@ function display_dynamic_form_settings()
             <table class="form-table">
                 <tr>
                     <th><label for="host_name"><?php _e('Nom de l\'hébergeur :', 'shamma'); ?></label></th>
-                    <td><input type="text" id="host_name" name="host_name" class="<?= isset($errors['host_name']) ? 'error' : ''; ?>" value="<?= isset($settings_data['host_name']) ? esc_attr($settings_data['host_name']) : ''; ?>"></td>
+                    <td><input type="text" id="host_name" name="host_name" class="<?= isset($errors['host_name']) ? 'error' : ''; ?>" value="<?= esc_attr($host_name); ?>"></td>
                 </tr>
                 <tr>
                     <th><label for="username"><?php _e('Nom de l\'utilisateur :', 'shamma'); ?></label></th>
-                    <td><input type="text" id="username" name="username" class="<?= isset($errors['username']) ? 'error' : ''; ?>" value="<?= isset($settings_data['username']) ? esc_attr($settings_data['username']) : ''; ?>"></td>
+                    <td><input type="text" id="username" name="username" class="<?= isset($errors['username']) ? 'error' : ''; ?>" value="<?= esc_attr($username); ?>"></td>
                 </tr>
                 <tr>
                     <th><label for="password"><?php _e('Mot de passe :', 'shamma'); ?></label></th>
-                    <td><input type="password" id="password" name="host_password" class="<?= isset($errors['host_password']) ? 'error' : ''; ?>" value="<?= isset($settings_data['host_password']) ? esc_attr($settings_data['host_password']) : ''; ?>"></td>
+                    <td><input type="password" id="password" name="host_password" class="<?= isset($errors['host_password']) ? 'error' : ''; ?>" value="<?= esc_attr($host_password); ?>"></td>
                 </tr>
             </table>
             <?php submit_button(__('Enregistrer les paramètres', 'shamma'), 'primary', 'submit-form-settings'); ?>
         </form>
     </div>
-    <?php
+<?php
 }
+
+
 
 //check settings fields
 function get_settings_fields()
@@ -579,7 +585,7 @@ function insert_settings_data($settings_data)
     global $wpdb;
     $table_name2 = $wpdb->prefix . 'dynamic_form_hosting_settings';
 
-    // Encodage du mot de passe en base64
+    // Base64 password encoding
     $encoded_password = base64_encode($settings_data['host_password']);
 
     try {
@@ -702,17 +708,17 @@ function sendEmailWithAttachment($recipientEmail, $senderEmail, $attachmentPath)
     require_once ABSPATH . 'wp-content/plugins/wp-mail-smtp/src/Helpers/Crypto.php';
 
 
-    // Créer une instance de PHPMailer
+    // Create a PHPMailer instance
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 
     global $wpdb;
     $table_name2 = $wpdb->prefix . 'dynamic_form_hosting_settings';
 
-    // Requête SQL pour récupérer toutes les données de la table
+    // SQL query to retrieve all smtp table data 
     $query = "SELECT * FROM $table_name2";
 
-    // Exécution de la requête et récupération des résultats
+    // Execute query and retrieve results
     $results = $wpdb->get_results($query, ARRAY_A);
     foreach ($results as $row) {
         $host = $row['host_name'];
@@ -733,35 +739,49 @@ function sendEmailWithAttachment($recipientEmail, $senderEmail, $attachmentPath)
 
     $mail->SMTPDebug = 0;
 
-    // Paramètres de l'email
+    // Email settings
     $mail->setFrom($senderEmail);
     $mail->addAddress($recipientEmail);
     $mail->Subject = __('Formulaire d\'immigration', 'shamma');
     $mail->Body    = __('Bonjour ', 'shamma') . $_POST['nom'] . __(', merci de nous faire confiance !!', 'shamma');
 
-    // Ajout de la pièce jointe
+    // Add attachment
     $file = $attachmentPath;
     $filename = basename($file);
     $mail->addAttachment($file, $filename);
 
-    // Envoyer l'email
+    // Send email
     if ($mail->send()) {
-    ?>
-        <div class="email-success">
-            <p><?= __("Félicitation, votre formulaire a été soumis avec succès. Vous recevrez un mail recensant vos informations !", "shamma") ?></p>
-        </div>
-
-<?php
-        //nettoyage du formulaire une fois qu'il a été soumis
-        $form_processed_successfully = true; // Remplacez cela par votre propre logique de succès
-
+        $form_processed_successfully = true;
         if ($form_processed_successfully) {
-            // Redirection avec JavaScript
-            echo '<script>window.location.href = "' . esc_url(add_query_arg('form_success', 'true', $_SERVER['REQUEST_URI'])) . '";</script>';
+            echo '<div id="emailSuccessMessage" class="email-success" style="display: none;">' . __("Félicitation, votre formulaire a été soumis avec succès. Vous recevrez un mail recensant vos informations !", "shamma") . '</div>';
+            echo '<style>.email-success {
+                position: absolute !important;
+                background-color: #4caf50 !important;
+                color: #ffffff !important;
+                left: 50% !important;
+                top: 10% !important;
+                transform: translate(-50%, -50%);
+                font-size: 16px;
+                text-align: center;
+                line-height: 20px;
+                font-weight: 600 !important;
+                padding: 30px !important;
+                transition: all 0.5s ease-in-out !important;
+            }</style>';
+            echo '<script>window.onload = function() { 
+                var emailSuccessMessage = document.getElementById("emailSuccessMessage");
+                if(emailSuccessMessage) {
+                    emailSuccessMessage.style.display = "block";
+                }
+                setTimeout(function() {
+                    window.location.href = "' . esc_url(add_query_arg('form_success', 'true', $_SERVER['REQUEST_URI'])) . '";
+                }, 3000);
+            }</script>';
             exit;
         }
     } else {
-        // echo 'Erreur lors de l\'envoi de l\'email: ' . $mail->ErrorInfo;
+        // echo 'Error sending email: ' . $mail->ErrorInfo;
     }
 }
 
@@ -773,7 +793,7 @@ $form_data_spouse = get_submit_spouse_form_data();
 $spouse_data = $form_data_spouse['other_data'];
 $spouse_errors = $form_data_spouse['errors'];
 
-// Vérifier s'il n'y a pas d'erreurs dans les données de l'utilisateur ou du conjoint
+// Check for errors in user or spouse data
 if (empty($user_errors) && empty($spouse_errors) || $spouse_id === null) {
     $outputFilename = __("Formulaire_immigration.pdf", "shamma");
     generatePdf("", $outputFilename);
@@ -989,29 +1009,29 @@ function display_registered_spouses_table()
 
 function add_registered_users_submenu()
 {
-    // Ajouter le menu principal (Dynamic Form)
+    // Add main menu (Dynamic Form)
     add_menu_page(
-        __('Dynamic Form', 'shamma'), // Titre de la page
-        __('Dynamic Form', 'shamma'), // Texte du menu
-        'manage_options', // Capacité nécessaire pour accéder à la page
-        'dynamic_form_menu', // Slug de la page
-        'display_registered_users_table', // Fonction d'affichage de la page
-        'dashicons-email-alt2', // Icône du menu
-        3 // Position dans le menu (ajustez selon vos besoins)
+        __('Dynamic Form', 'shamma'), // Title page
+        __('Dynamic Form', 'shamma'), // main menu text
+        'manage_options', // Capacity required to access the page
+        'dynamic_form_menu', // Slug page
+        'display_registered_users_table', // Page display function
+        'dashicons-email-alt2', // Menu icon
+        3 // Menu position (adjust as required)
     );
-    // Ajouter les sous-menus
+    // Add submenus
     add_submenu_page(
-        'dynamic_form_menu', // Slug du menu principal
-        __('Liste des Clients', 'shamma'), // Titre de la page
-        __('Liste des Clients', 'shamma'), // Texte du menu
+        'dynamic_form_menu', // Main menu slug
+        __('Liste des Clients', 'shamma'), // Title page
+        __('Liste des Clients', 'shamma'), // menu text
         'manage_options',
         'registered_users',
         'display_registered_users_table'
     );
     add_submenu_page(
-        'dynamic_form_menu', // Slug du menu principal
-        __('Liste des conjoints', 'shamma'), // Titre de la page
-        __('Liste des conjoints', 'shamma'), // Texte du menu
+        'dynamic_form_menu', // Main menu slug
+        __('Liste des conjoints', 'shamma'), // Title page
+        __('Liste des conjoints', 'shamma'), // menu text
         'manage_options',
         'registered_spouses',
         'display_registered_spouses_table'
@@ -1026,7 +1046,7 @@ function add_registered_users_submenu()
         'display_dynamic_form_settings'
     );
 }
-// Ajouter l'action pour créer les menus
+// Add action to create menus
 add_action('admin_menu', 'add_registered_users_submenu');
 
 function remove_dynamic_form_submenu()
@@ -1034,7 +1054,8 @@ function remove_dynamic_form_submenu()
     remove_submenu_page('dynamic_form_menu', 'dynamic_form_menu');
 }
 
-// Ajouter l'action pour supprimer le sous-menu redondant
+// Add action to delete redundant sub-menu
+
 add_action('admin_menu', 'remove_dynamic_form_submenu');
 
 // Function who drop the table to database when i uninstall the plugin
@@ -1059,15 +1080,15 @@ function dynamic_form_uninstall()
 }
 
 // register the dynamic_form_uninstall when i uninstall my plugin
-// register_uninstall_hook(__FILE__, 'dynamic_form_uninstall');
-register_deactivation_hook(__FILE__, 'dynamic_form_uninstall');
+register_uninstall_hook(__FILE__, 'dynamic_form_uninstall');
+// register_deactivation_hook(__FILE__, 'dynamic_form_uninstall');
 
 //register scripts and styles
 function add_custom_css_and_js()
 {
     $plugin_url = plugin_dir_url(__FILE__);
-    wp_enqueue_style('custom-form', $plugin_url . 'assets/css/custom-form.css');
-    wp_enqueue_script('manage-fields', $plugin_url . 'assets/js/manage-dynamic-fields.js');
+    wp_enqueue_style('custom-form', $plugin_url . 'assets/css/custom-form.css', array(), '1.0', 'all');
+    wp_enqueue_script('manage-fields', $plugin_url . 'assets/js/manage-dynamic-fields.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'add_custom_css_and_js');
 

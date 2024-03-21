@@ -35,11 +35,9 @@ window.addEventListener("load", function () {
       }
     });
   });
+  // var emailSuccessDiv = document.querySelector(".email-success");
+  //     emailSuccessDiv.classList.add("show");
+  //     setTimeout(function () {
+  //         emailSuccessDiv.classList.remove("show");
+  //     }, 8000);
 });
-window.onload = function() {
-  var emailSuccessDiv = document.querySelector(".email-success");
-  emailSuccessDiv.classList.add("show");
-  setTimeout(function () {
-    emailSuccessDiv.classList.remove("show");
-  }, 3000);
-};

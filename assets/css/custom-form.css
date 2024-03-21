@@ -80,22 +80,22 @@
   align-items: center;
 }
 /* email success */
-.email-success {
-  position: absolute;
-  background-color: #4caf50;
-  color: #ffffff;
-  right: 0;
-  top: 25px;
-  padding: 20px;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
+/* .email-success {
+  position: absolute !important;
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+  right: 0 !important;
+  top: 25px !important;
+  padding: 20px !important;
+  opacity: 0 !important;
+  transition: all 0.5s ease-in-out !important;
+} */
 
-.email-success.show {
-  right: 0;
+/* .email-success.show {
+  right: 0 !important;
   opacity: 1 !important;
-  transition: all 0.5s ease-in-out;
-}
+  transition: all 0.5s ease-in-out !important;
+} */
 .children_details{
   display: none;
 }
